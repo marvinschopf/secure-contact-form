@@ -41,7 +41,6 @@ if (
         str_starts_with($_POST["message"], "-----BEGIN PGP MESSAGE-----") &&
         str_starts_with($_POST["compiled"], "-----BEGIN PGP MESSAGE-----")
     ) {
-
         $email = $_POST["email"];
         $message = $_POST["message"];
         $compiled = $_POST["compiled"];
@@ -71,7 +70,6 @@ if (
         $mail->send();
 
         $success = "The message was successfully encrypted and sent.";
-
     } else {
         // TODO: Show error message in form
         //http_response_code(302);
@@ -99,20 +97,20 @@ if (
         <div class="container">
             <h1>Contact form</h1>
             <?php
-                if($error != "") {
-                    ?>
+            if ($error != "") { ?>
                         <p class="alert alert-danger">
-                            <i class="fas fa-exclamation-circle"></i> <?php echo(htmlspecialchars($error)); ?>
+                            <i class="fas fa-exclamation-circle"></i> <?php echo htmlspecialchars(
+                                $error
+                            ); ?>
                         </p>
-                    <?php
-                }
-                if($success != "") {
-                    ?>
+                    <?php }
+            if ($success != "") { ?>
                         <p class="alert alert-success">
-                            <i class="fas fa-check-circle"></i> <?php echo(htmlspecialchars($success)); ?>
+                            <i class="fas fa-check-circle"></i> <?php echo htmlspecialchars(
+                                $success
+                            ); ?>
                         </p>
-                    <?php
-                }
+                    <?php }
             ?>
             <p>
                 <a href="form.html" class="btn btn-lg btn-secondary w-100">Back</a>
