@@ -1,3 +1,6 @@
+openpgp.config.show_version = false;
+openpgp.config.show_comment = false;
+
 async function encrypt(message) {
     return (await openpgp.encrypt({
         message: openpgp.message.fromText(message),
