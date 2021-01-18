@@ -43,7 +43,7 @@ if (
         $message = $_POST["message"];
         $compiled = $_POST["compiled"];
 
-        if(USE_SMTP) {
+        if (USE_SMTP) {
             $mail->isSMTP();
             $mail->Host = SMTP_HOST;
             $mail->SMTPAuth = true;
