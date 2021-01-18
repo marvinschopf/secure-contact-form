@@ -45,24 +45,18 @@ if (
         $mail->SMTPAuth = true;
         $mail->Username = SMTP_USERNAME;
         $mail->Password = SMTP_PASSWORD;
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = SMTP_PORT;
+
+        $mail->XMailer = " ";
 
         $mail->setFrom(SMTP_FROM);
         $mail->addAddress(DESTINATION_EMAIL);
 
-        $mail->Subject = "New entry in contact form";
+        $mail->Subject = "Encrypted Message";
         $mail->Body = $compiled;
 
-        try {
-            $mail->send();
-        } catch (Exception $e) {
-            if (DEBUG) {
-                echo `<p class="alert alert-danger"><b>Error:</b> Message could not be sent. Mailer Error: {$mail->ErrorInfo}</p>`;
-            } else {
-                echo `<p class="alert alert-danger"><b>Error:</b> Message could not be sent. Mailer Error.</p>`;
-            }
-        }
+        $mail->send();
 
         // Show transmitted encrypted fields as HTML
         // TODO: Add more complex examples such as PGP-encrypted email or adding to a database.
