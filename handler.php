@@ -21,6 +21,9 @@ define("SMTP_PORT", 0);
 
 // Sample handler written in PHP
 
+$error = "";
+$success = "";
+
 // Instantiate mailer
 $mail = new PHPMailer(DEBUG);
 
@@ -67,27 +70,8 @@ if (
 
         $mail->send();
 
-        // Show transmitted encrypted fields as HTML
-        // TODO: Add more complex examples such as PGP-encrypted email or adding to a database.
-        ?>
-        <b>E-Mail:</b>
-        <br>
-        <code>
-            <?php echo htmlspecialchars($email); ?>
-        </code>
-        <br><br>
-        <b>Message:</b>
-        <br>
-        <code>
-            <?php echo htmlspecialchars($message); ?> 
-        </code>
-        <br><br>
-        <b>Compiled:</b>
-        <br>
-        <code>
-            <?php echo htmlspecialchars($compiled); ?>
-        </code>
-        <?php
+        $success = "The message was successfully encrypted and sent.";
+
     } else {
         // TODO: Show error message in form
         //http_response_code(302);
@@ -101,3 +85,38 @@ if (
     //die(header("Location: form.html"));
     echo "Not transmitted.";
 }
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Success &raquo; Contact form</title>
+        <link rel="stylesheet" href="static/fontawesome/css/all.min.css" />
+        <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Contact form</h1>
+            <?php
+                if($error != "") {
+                    ?>
+                        <p class="alert alert-danger">
+                            <i class="fas fa-exclamation-circle"></i> <?php echo(htmlspecialchars($error)); ?>
+                        </p>
+                    <?php
+                }
+                if($success != "") {
+                    ?>
+                        <p class="alert alert-success">
+                            <i class="fas fa-check-circle"></i> <?php echo(htmlspecialchars($success)); ?>
+                        </p>
+                    <?php
+                }
+            ?>
+            <p>
+                <a href="form.html" class="btn btn-lg btn-secondary">Back</a>
+            </p>
+        </div>
+    </body>
+</html>
