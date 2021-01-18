@@ -11,14 +11,20 @@
         </style>
         <link rel="stylesheet" href="static/fontawesome/css/all.min.css">
         <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+        <script>
+            // Setup
+            const FORM_ACTION = "";
+            const PUBLIC_KEY = `-----BEGIN PGP PUBLIC KEY BLOCK----- ... -----END PGP PUBLIC KEY BLOCK-----`;
+        </script>
     </head>
     <body>
         <div class="container">
             <h1>Contact form</h1>
+            <div class="error"></div>
             <p class="alert alert-info">
                 <i class="fas fa-lock"></i> <b>All data is transmitted end-to-end encrypted.</b>
             </p>
-            <form action="handler.php" method="POST">
+            <form action="javascript:submitForm();" method="" id="contactForm">
                 <div class="form-group">
                     <label for="email">Email address <span style="color: red">*</span></label>
                     <input type="email" name="email" id="email" class="form-control" required>
@@ -28,9 +34,11 @@
                     <textarea name="message" id="message" class="form-control" required></textarea>
                 </div>
                 <br>
-                <button class="btn btn-primary btn-lg w-100" type="submit">Send</button>
+                <button class="btn btn-primary btn-lg w-100" id="submitButton" type="submit">Send</button>
             </form>
         </div>
         <script src="static/openpgp.min.js"></script>
+        <script src="form.js"></script>
+        <div id="publicKey" class="visually-hidden">-----BEGIN PGP PUBLIC KEY BLOCK-----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uA1V-----END PGP PUBLIC KEY BLOCK-----</div>
     </body>
 </html>
