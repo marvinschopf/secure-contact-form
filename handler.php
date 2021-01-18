@@ -11,8 +11,8 @@ if (
     // str_starts_with is only compatible with PHP8
     // TODO: Ensure compatibility with PHP7
     if (
-        str_starts_with($_POST["email"], "-----BEGIN PGP MESSAGE-----") ||
-        str_starts_with($_POST["message"], "-----BEGIN PGP MESSAGE-----") ||
+        str_starts_with($_POST["email"], "-----BEGIN PGP MESSAGE-----") &&
+        str_starts_with($_POST["message"], "-----BEGIN PGP MESSAGE-----") &&
         str_starts_with($_POST["compiled"], "-----BEGIN PGP MESSAGE-----")
     ) {
 
