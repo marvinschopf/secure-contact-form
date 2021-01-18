@@ -115,7 +115,7 @@ if (
                 }
             ?>
             <p>
-                <a href="form.html" class="btn btn-lg btn-secondary">Back</a>
+                <a href="form.html" class="btn btn-lg btn-secondary w-100">Back</a>
             </p>
         </div>
     </body>
