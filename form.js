@@ -14,10 +14,12 @@ async function submitForm() {
         if(message.length >= 1) {
             let email = document.getElementById("email").value;
             if(email.length >= 1) {
+                const compiled = await encrypt('<p><b>E-mail address:</b></p><p>' + email + '</p><br><p><b>Message:</b></p><p>' + message + '</p>');
                 email = await encrypt(email);
                 message = await encrypt(message);
                 document.getElementById("message").value = message;
                 document.getElementById("email").value = email;
+                document.getElementById("compiled").value = compiled;
                 document.getElementById("contactForm").action = FORM_ACTION;
                 document.getElementById("contactForm").method = "POST";
                 document.getElementById("contactForm").submit();

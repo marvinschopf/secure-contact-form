@@ -2,13 +2,14 @@
 // Sample handler written in PHP
 
 // Check if form fields have been sent
-if(isset($_POST["email"]) && isset($_POST["message"])) {
+if(isset($_POST["email"]) && isset($_POST["message"]) && isset($_POST["compiled"])) {
     // Check if transmitted fields are PGP encrypted
     // str_starts_with is only compatible with PHP8
     // TODO: Ensure compatibility with PHP7
-    if(str_starts_with($_POST["email"], "-----BEGIN PGP MESSAGE-----") || str_starts_with($_POST["message"], "-----BEGIN PGP MESSAGE-----")) {
+    if(str_starts_with($_POST["email"], "-----BEGIN PGP MESSAGE-----") || str_starts_with($_POST["message"], "-----BEGIN PGP MESSAGE-----") || str_starts_with($_POST["compiled"], "-----BEGIN PGP MESSAGE-----")) {
         $email = $_POST["email"];
         $message = $_POST["message"];
+        $compiled = $_POST["compiled"];
         // Show transmitted encrypted fields as HTML
         // TODO: Add more complex examples such as PGP-encrypted email or adding to a database.
         ?>
@@ -22,6 +23,12 @@ if(isset($_POST["email"]) && isset($_POST["message"])) {
         <br>
         <code>
             <?php echo(htmlspecialchars($message)); ?> 
+        </code>
+        <br><br>
+        <b>Compiled:</b>
+        <br>
+        <code>
+            <?php echo(htmlspecialchars($compiled)); ?>
         </code>
         <?php
     } else {
