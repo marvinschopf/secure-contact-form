@@ -19,12 +19,12 @@ async function submitForm() {
                 document.getElementById("contactForm").method = "POST";
                 document.getElementById("contactForm").submit();
             } else {
-                document.getElementById("error").innerHTML = ```<p class="alert alert-danger"><b>Error:</b> Please enter your e-mail address.```;
+                document.getElementById("error").innerHTML = ```<p class="alert alert-danger"><b>Error:</b> Please enter your e-mail address.</p>```;
             }
         } else {
-            document.getElementById("error").innerHTML = ```<p class="alert alert-danger"><b>Error:</b> Please enter a message.```;
+            document.getElementById("error").innerHTML = ```<p class="alert alert-danger"><b>Error:</b> Please enter a message.</p>```;
         }
     } else {
-        document.getElementById("error").innerHTML = ```<p class="alert alert-danger"><b>Error:</b> Your browser does not support a cryptographically secure random number generator. Please use a newer browser.```;
+        document.getElementById("error").innerHTML = ```<p class="alert alert-danger"><b>Error:</b> Your browser does not support a cryptographically secure random number generator. Please use a newer browser.</p>```;
     }
 }
