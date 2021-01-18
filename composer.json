@@ -1,0 +1,14 @@
+{
+    "name": "magicmarvman/secure-contact-form",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "6.2.0"
+    },
+    "license": "GPLv3.0",
+    "authors": [
+        {
+            "name": "Marvin Schopf",
+            "email": "marvin@schopf.biz"
+        }
+    ]
+}

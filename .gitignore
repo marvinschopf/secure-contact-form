@@ -70,3 +70,4 @@ $RECYCLE.BIN/
 
 # Static files
 static/
+/vendor/
