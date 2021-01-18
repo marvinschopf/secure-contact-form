@@ -59,7 +59,7 @@ if (
 
         $mail->IsHTML(false);
 
-        $mail->setFrom(SMTP_FROM);
+        $mail->setFrom(FROM_EMAIL);
         $mail->addAddress(DESTINATION_EMAIL);
 
         $mail->Subject = "Encrypted Message";
