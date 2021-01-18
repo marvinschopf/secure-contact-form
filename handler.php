@@ -50,6 +50,8 @@ if (
 
         $mail->XMailer = " ";
 
+        $mail->IsHTML(false);
+
         $mail->setFrom(SMTP_FROM);
         $mail->addAddress(DESTINATION_EMAIL);
 
