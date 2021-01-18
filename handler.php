@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\Exception;
 require "vendor/autoload.php";
 
 // Config
-define("DEBUG", False);
+define("DEBUG", false);
 define("DESTINATION_EMAIL", "");
 define("SMTP_FROM", "");
 define("SMTP_HOST", "");
@@ -57,7 +57,7 @@ if (
         try {
             $mail->send();
         } catch (Exception $e) {
-            if(DEBUG) {
+            if (DEBUG) {
                 echo `<p class="alert alert-danger"><b>Error:</b> Message could not be sent. Mailer Error: {$mail->ErrorInfo}</p>`;
             } else {
                 echo `<p class="alert alert-danger"><b>Error:</b> Message could not be sent. Mailer Error.</p>`;
