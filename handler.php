@@ -9,8 +9,11 @@ require "vendor/autoload.php";
 
 // Config
 define("DEBUG", false);
+
 define("DESTINATION_EMAIL", "");
-define("SMTP_FROM", "");
+define("FROM_EMAIL", "");
+define("USE_SMTP", false);
+
 define("SMTP_HOST", "");
 define("SMTP_USERNAME", "");
 define("SMTP_PASSWORD", "");
@@ -40,13 +43,17 @@ if (
         $message = $_POST["message"];
         $compiled = $_POST["compiled"];
 
-        $mail->isSMTP();
-        $mail->Host = SMTP_HOST;
-        $mail->SMTPAuth = true;
-        $mail->Username = SMTP_USERNAME;
-        $mail->Password = SMTP_PASSWORD;
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = SMTP_PORT;
+        if(USE_SMTP) {
+            $mail->isSMTP();
+            $mail->Host = SMTP_HOST;
+            $mail->SMTPAuth = true;
+            $mail->Username = SMTP_USERNAME;
+            $mail->Password = SMTP_PASSWORD;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = SMTP_PORT;
+        } else {
+            $mail->IsMail();
+        }
 
         $mail->XMailer = " ";
 
