@@ -1,5 +1,5 @@
 # secure-contact-form
-## Requirements
+## Dependencies
 Please replace the links to external libraries in `form.html` with corresponding links to a CDN or self-downloaded files.
 
 The following libraries are required:
