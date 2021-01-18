@@ -18,10 +18,7 @@ async function submitForm() {
       let email = document.getElementById("email").value;
       if (email.length >= 1) {
         const compiled = await encrypt(
-          "E-mail address:\n" +
-            email +
-            "\n\nMessage:\n\n" +
-            message
+          "E-mail address:\n" + email + "\n\nMessage:\n\n" + message
         );
         email = await encrypt(email);
         message = await encrypt(message);
