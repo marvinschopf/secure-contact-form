@@ -1,5 +1,25 @@
 <?php
+// Import PHPMailer classes into the global namespace
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+// Load Composer's autoloader
+require "vendor/autoload.php";
+
+// Config
+define("DEBUG", False);
+define("DESTINATION_EMAIL", "");
+define("SMTP_FROM", "");
+define("SMTP_HOST", "");
+define("SMTP_USERNAME", "");
+define("SMTP_PASSWORD", "");
+define("SMTP_PORT", 0);
+
 // Sample handler written in PHP
+
+// Instantiate mailer
+$mail = new PHPMailer(DEBUG);
 
 // Check if form fields have been sent
 if (
@@ -19,6 +39,30 @@ if (
         $email = $_POST["email"];
         $message = $_POST["message"];
         $compiled = $_POST["compiled"];
+
+        $mail->isSMTP();
+        $mail->Host = SMTP_HOST;
+        $mail->SMTPAuth = true;
+        $mail->Username = SMTP_USERNAME;
+        $mail->Password = SMTP_PASSWORD;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port = SMTP_PORT;
+
+        $mail->setFrom(SMTP_FROM);
+        $mail->addAddress(DESTINATION_EMAIL);
+
+        $mail->Subject = "New entry in contact form";
+        $mail->Body = $compiled;
+
+        try {
+            $mail->send();
+        } catch (Exception $e) {
+            if(DEBUG) {
+                echo `<p class="alert alert-danger"><b>Error:</b> Message could not be sent. Mailer Error: {$mail->ErrorInfo}</p>`;
+            } else {
+                echo `<p class="alert alert-danger"><b>Error:</b> Message could not be sent. Mailer Error.</p>`;
+            }
+        }
 
         // Show transmitted encrypted fields as HTML
         // TODO: Add more complex examples such as PGP-encrypted email or adding to a database.
